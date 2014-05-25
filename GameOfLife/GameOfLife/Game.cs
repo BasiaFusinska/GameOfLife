@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 
 namespace GameOfLife
 {
     public class Game
     {
-        public void Play()
+        private readonly Board _board;
+
+        public Game(Board board)
         {
-            
+            _board = board;
         }
     }
 }
