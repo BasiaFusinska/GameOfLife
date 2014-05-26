@@ -25,21 +25,19 @@ namespace GameOfLife
             {
                 for (var j = 0; j < _width; j++)
                 {
-                    if(ApplyFirstRule(i, j))
+                    if(ApplyRule(i, j))
                         points.Add(new Point(i, j));
                 }
             }
             _board = new Board(points, _length, _width);
         }
 
-        private bool ApplyFirstRule(int i, int j)
+        private bool ApplyRule(int x, int y)
         {
-            var value = _board.IsAlive(i, j);
-            if (!value) return false;
-            
-            var neighboursCount = CountNeighbours(i, j);
+            var value = _board.IsAlive(x, y);
+            var neighboursCount = CountNeighbours(x, y);
 
-            return neighboursCount >= 2;
+            return value ? neighboursCount > 1 && neighboursCount < 4 : neighboursCount == 3;
         }
 
         private int CountNeighbours(int x, int y)
