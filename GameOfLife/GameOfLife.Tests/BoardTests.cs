@@ -46,12 +46,12 @@ namespace GameOfLife.Tests
 
             var board = new Board(points, 10, 10);
 
-            board.IsAlive(new Point(2, 2)).Should().BeTrue();
-            board.IsAlive(new Point(4, 4)).Should().BeTrue();
-            board.IsAlive(new Point(6, 6)).Should().BeTrue();
-            board.IsAlive(new Point(1, 3)).Should().BeFalse();
-            board.IsAlive(new Point(5, 2)).Should().BeFalse();
-            board.IsAlive(new Point(7, 4)).Should().BeFalse();
+            board.IsAlive(2, 2).Should().BeTrue();
+            board.IsAlive(4, 4).Should().BeTrue();
+            board.IsAlive(6, 6).Should().BeTrue();
+            board.IsAlive(1, 3).Should().BeFalse();
+            board.IsAlive(5, 2).Should().BeFalse();
+            board.IsAlive(7, 4).Should().BeFalse();
         }
     }
 }

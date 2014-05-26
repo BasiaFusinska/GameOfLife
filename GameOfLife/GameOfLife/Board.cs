@@ -27,9 +27,9 @@ namespace GameOfLife
             }
         }
 
-        public bool IsAlive(Point point)
+        public bool IsAlive(int x, int y)
         {
-            return _board[point.X, point.Y];
+            return _board[x, y];
         }
     }
 }
