@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameOfLife
 {
-    public class Board
+    class Board
     {
         private readonly int _length;
         private readonly int _width;

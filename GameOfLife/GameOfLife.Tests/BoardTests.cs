@@ -8,14 +8,14 @@ namespace GameOfLife.Tests
 {
     public static class BoardTestsHelper
     {
-         public static void CellIsAlive(this Board board, int x, int y)
+         public static void CellIsAlive(this Game game, int x, int y)
          {
-             board.IsAlive(x, y).Should().BeTrue();
+             game.IsAlive(x, y).Should().BeTrue();
          }
  
-         public static void CellIsDead(this Board board, int x, int y)
+         public static void CellIsDead(this Game game, int x, int y)
          {
-             board.IsAlive(x, y).Should().BeFalse();
+             game.IsAlive(x, y).Should().BeFalse();
          }
      }
     public class BoardTests
@@ -30,7 +30,7 @@ namespace GameOfLife.Tests
                 new Point(6, 6)
             };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Board(points, 10, 10));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Game(points, 10, 10));
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace GameOfLife.Tests
                 new Point(6, 6)
             };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Board(points, 10, 10));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Game(points, 10, 10));
         }
 
         [Fact]
@@ -56,24 +56,24 @@ namespace GameOfLife.Tests
                 new Point(6, 6)
             };
 
-            var board = new Board(points, 10, 10);
+            var game = new Game(points, 10, 10);
 
-            AddedPointsShouldBeAlive(board);
-            OtherPointsShouldBeDead(board);
+            AddedPointsShouldBeAlive(game);
+            OtherPointsShouldBeDead(game);
         }
 
-        private static void OtherPointsShouldBeDead(Board board)
+        private static void OtherPointsShouldBeDead(Game game)
         {
-            board.CellIsDead(1, 3);
-            board.CellIsDead(5, 2);
-            board.CellIsDead(7, 4);
+            game.CellIsDead(1, 3);
+            game.CellIsDead(5, 2);
+            game.CellIsDead(7, 4);
         }
 
-        private static void AddedPointsShouldBeAlive(Board board)
+        private static void AddedPointsShouldBeAlive(Game game)
         {
-            board.CellIsAlive(2, 2);
-            board.CellIsAlive(4, 4);
-            board.CellIsAlive(6, 6);
+            game.CellIsAlive(2, 2);
+            game.CellIsAlive(4, 4);
+            game.CellIsAlive(6, 6);
         }
     }
 }
