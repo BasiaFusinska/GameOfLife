@@ -6,6 +6,18 @@ using Xunit;
 
 namespace GameOfLife.Tests
 {
+    public static class BoardTestsHelper
+    {
+         public static void CellIsAlive(this Board board, int x, int y)
+         {
+             board.IsAlive(x, y).Should().BeTrue();
+         }
+ 
+         public static void CellIsDead(this Board board, int x, int y)
+         {
+             board.IsAlive(x, y).Should().BeFalse();
+         }
+     }
     public class BoardTests
     {
         [Fact]
@@ -46,12 +58,22 @@ namespace GameOfLife.Tests
 
             var board = new Board(points, 10, 10);
 
-            board.IsAlive(2, 2).Should().BeTrue();
-            board.IsAlive(4, 4).Should().BeTrue();
-            board.IsAlive(6, 6).Should().BeTrue();
-            board.IsAlive(1, 3).Should().BeFalse();
-            board.IsAlive(5, 2).Should().BeFalse();
-            board.IsAlive(7, 4).Should().BeFalse();
+            AddedPointsShouldBeAlive(board);
+            OtherPointsShouldBeDead(board);
+        }
+
+        private static void OtherPointsShouldBeDead(Board board)
+        {
+            board.CellIsDead(1, 3);
+            board.CellIsDead(5, 2);
+            board.CellIsDead(7, 4);
+        }
+
+        private static void AddedPointsShouldBeAlive(Board board)
+        {
+            board.CellIsAlive(2, 2);
+            board.CellIsAlive(4, 4);
+            board.CellIsAlive(6, 6);
         }
     }
 }
