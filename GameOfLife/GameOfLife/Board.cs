@@ -9,14 +9,15 @@ namespace GameOfLife
 {
     class Board
     {
-        private readonly int _length;
-        private readonly int _width;
         private readonly bool[,] _board;
+
+        public int Length { get; private set; }
+        public int Width { get; private set; }
 
         public Board(IEnumerable<Point> points, int length, int width)
         {
-            _length = length;
-            _width = width;
+            Length = length;
+            Width = width;
             _board = new bool[length, width];
 
             foreach (var point in points)
@@ -31,13 +32,24 @@ namespace GameOfLife
             }
         }
 
+        public void ForeachCell(Action<int, int> action)
+        {
+            for (var i = 0; i < Length; i++)
+            {
+                for (var j = 0; j < Width; j++)
+                {
+                    action(i, j);
+                }
+            }
+        }
+
         public int CountNeighbours(int x, int y)
         {
             var neighboursCount = 0;
 
-            for (var i = Math.Max(0, x - 1); i <= Math.Min(_length - 1, x + 1); i++)
+            for (var i = Math.Max(0, x - 1); i <= Math.Min(Length - 1, x + 1); i++)
             {
-                for (var j = Math.Max(0, y - 1); j <= Math.Min(_width - 1, y + 1); j++)
+                for (var j = Math.Max(0, y - 1); j <= Math.Min(Width - 1, y + 1); j++)
                 {
                     neighboursCount += IsAlive(i, j) ? 1 : 0;
                 }

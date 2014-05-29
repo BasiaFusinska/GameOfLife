@@ -24,7 +24,7 @@ namespace GameOfLife.Tests
 
             for(var i = 0; i < 3; i++)
                 for (var j = 0; j < 3; j++)
-                    game.IsAlive(i, j).Should().BeFalse();
+                    game.CellIsDead(i, j);
         }
 
         [Theory]
@@ -43,7 +43,7 @@ namespace GameOfLife.Tests
 
             for (var i = 0; i < 3; i++)
                 for (var j = 0; j < 3; j++)
-                    game.IsAlive(i, j).Should().BeFalse();
+                    game.CellIsDead(i, j);
             
         }
 
@@ -61,7 +61,7 @@ namespace GameOfLife.Tests
             var game = new Game(new List<Point> { new Point(x1, y1), new Point(x2, y2), new Point(x3, y3) }, 3, 3);
             game.Step();
 
-            game.IsAlive(x2, y2).Should().BeTrue();
+            game.CellIsAlive(x2, y2);
         }
 
         [Theory]
@@ -78,7 +78,7 @@ namespace GameOfLife.Tests
             var game = new Game(new List<Point> { new Point(x1, y1), new Point(x2, y2), new Point(x3, y3), new Point(x4, y4) }, 3, 3);
             game.Step();
 
-            game.IsAlive(x1, y1).Should().BeTrue();
+            game.CellIsAlive(x1, y1);
         }
 
         [Theory]
@@ -92,7 +92,7 @@ namespace GameOfLife.Tests
             var game = new Game(new List<Point> { new Point(x1, y1), new Point(x2, y2), new Point(x3, y3), new Point(x4, y4), new Point(x5, y5) }, 3, 3);
             game.Step();
 
-            game.IsAlive(x1, y1).Should().BeFalse();
+            game.CellIsDead(x1, y1);
         }
     }
 }
